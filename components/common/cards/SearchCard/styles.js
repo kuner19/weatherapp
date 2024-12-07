@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import { StatusBar } from "react-native";
-import {Fonts, Sizes} from "../../../constants/Sizes"
+import {Fonts} from "../../../constants/Sizes"
 
 const styles = StyleSheet.create({
 
@@ -11,7 +11,6 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         flexDirection: "row",
         color: 'white',
-
         //padding: SIZES.medium,
         //borderRadius: SIZES.small,
         // backgroundColor: "#FFF",
@@ -61,7 +60,6 @@ const styles = StyleSheet.create({
         width:'100%',
         backgroundColor:'white',
         marginTop: 60,
-        zIndex : 5
     },
 });
 
