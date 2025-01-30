@@ -8,9 +8,10 @@ import SearchComponent from "@/src/components/SearchComponent";
 
 
 
+
 const Home = () =>{
 
-   const forecast =  bgSelect('sunny')
+   const forecast =  bgSelect('rainy')
 
     return  (
 
@@ -19,7 +20,7 @@ const Home = () =>{
          <LinearGradient
         // Button Linear Gradient
         colors={[forecast?.bg1 || '',forecast?.bg2 || '']}>
-         <View className="p-[20] flex items-center" style={{height: rV(400), width:rS(360)}}>
+         <View className="p-[20] flex items-center" style={{height:rV(450)}}>
 
           <SearchComponent/>
    
