@@ -3,6 +3,7 @@ import { FlatList, Image, Text, TextInput, TouchableOpacity, View } from "react-
 import styles from '@/src/components/style'
 import image from '@/src/style/images'
 import { useEffect, useState } from "react"
+import fetchLocation from "../service/get_location"
 
 const SearchComponent = () => {
 
@@ -21,10 +22,19 @@ const SearchComponent = () => {
         
     },[searchValue])
 
+
+    useEffect(()=>{
+        if (searchValue !== ''){
+            fetchLocation(searchValue)
+        }
+       
+    },[searchValue])
+   
+
     return (
         <View className="flex items-center">
                 <View className="items-center" style={styles(rMS(250, .5),rMS(40,.5),rV(30)).container}> 
-                    <TextInput placeholder={searchHolder} value={searchValue} placeholderTextColor='rgba(255,255,255,.5)' style={{height:rMS(40), width:rMS(200,.5),fontSize:rMS(12),color:'white'}} 
+                    <TextInput placeholder={searchHolder} value={searchValue} placeholderTextColor='rgba(255,255,255,.3)' style={{height:rMS(40), width:rMS(200,.5),fontSize:rMS(12),color:'white'}} 
                     onChangeText={setSearchValue}
                     
                     onBlur={()=>{
@@ -53,7 +63,6 @@ const SearchComponent = () => {
                                 setSearchValue(item)
                                 setSearchHolder(item)
                                 toggleSearch(!showSearch)
-                                
                             }}
                             onBlur={()=>{
                                 console.log('yes')

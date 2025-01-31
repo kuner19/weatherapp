@@ -26,7 +26,7 @@ const styles = (w,h,radius) => StyleSheet.create({
     loc_container: {
             padding : 5 ,
             display : 'flex',
-            flexDirection:'row',
+            flexDirection:'row', 
     }
 
    
