@@ -10,7 +10,7 @@ const SearchComponent = () => {
     const [searchValue , setSearchValue] = useState('')
     const [showSearch, toggleSearch] = useState(false)
     const [searchHolder, setSearchHolder] = useState('Search your location...')
-    const [location, setLocations] = useState(['Caloocan City','Valenzuela','Rizal','Malabon'])
+    const [location, setLocations] = useState<any>([])
 
 
     useEffect(()=>{
@@ -24,8 +24,18 @@ const SearchComponent = () => {
 
 
     useEffect(()=>{
+
+        console.log('yes')
         if (searchValue !== ''){
-            fetchLocation(searchValue)
+           
+            const loc =  fetchLocation(searchValue).then((response)=>{
+             
+
+                if (response){
+                    setLocations(response)
+                    console.log(location.length)
+                }
+            })
         }
        
     },[searchValue])
@@ -56,12 +66,13 @@ const SearchComponent = () => {
 
 
         {location.length > 0 && showSearch ? (
-            
                     <View style={{width:rMS(325,.5), maxHeight:rMS(100), backgroundColor:'white', marginTop:3}}>
+                        
                         <FlatList data={location} renderItem={({item,index}) => (
                             <TouchableOpacity onPress={()=>{
-                                setSearchValue(item)
-                                setSearchHolder(item)
+                                console.log(`change value to ${item.name}, ${item.country} `)
+                                setSearchValue(`${item.name}, ${item.country}`)
+                                setSearchHolder(`${item.name}, ${item.country}`)
                                 toggleSearch(!showSearch)
                             }}
                             onBlur={()=>{
@@ -71,15 +82,15 @@ const SearchComponent = () => {
                             
                                 <View style={[styles(('')).loc_container, {backgroundColor: (index + 1) % 2 === 0 ? 'rgba(155,155,155,.2)' : 'white'}]}>
                                 <Image source={image.pin} style={{width:rMS(15), height:rMS(15)}}/>
-                                <Text style={{fontSize:rMS(12)}}>{item}</Text>
+                                <Text style={{fontSize:rMS(12)}}>{item.name}, {item.country}</Text>
 
-                            </View>
+                                </View>
                             </TouchableOpacity>
                            
                            
                   )}/>
                     </View>
-        ) : null}
+        ) : null } 
 
 
 
