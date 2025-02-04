@@ -1,17 +1,17 @@
 import { rMS, rS, rV } from "@/src/style/responsive"
 import { FlatList, Image, Text, TextInput, TouchableOpacity, View } from "react-native"
-import styles from '@/src/components/style'
+import styles from '@/src/components/SearchComponent/style'
 import image from '@/src/style/images'
 import { useEffect, useState } from "react"
-import fetchLocation from "../service/get_location"
+import fetchLocation from "../../service/get_location"
 
-const SearchComponent = () => {
+const SearchComponent = ({setCoordinates} : any) => {
 
     const [searchValue , setSearchValue] = useState('')
     const [showSearch, toggleSearch] = useState(false)
     const [searchHolder, setSearchHolder] = useState('Search your location...')
     const [location, setLocations] = useState<any>([])
-
+    const [weather, setWeather] = useState<any>([])
 
     useEffect(()=>{
 
@@ -24,8 +24,6 @@ const SearchComponent = () => {
 
 
     useEffect(()=>{
-
-        console.log('yes')
         if (searchValue !== ''){
            
             const loc =  fetchLocation(searchValue).then((response)=>{
@@ -33,13 +31,13 @@ const SearchComponent = () => {
 
                 if (response){
                     setLocations(response)
-                    console.log(location.length)
                 }
             })
         }
        
     },[searchValue])
    
+
 
     return (
         <View className="flex items-center">
@@ -70,13 +68,12 @@ const SearchComponent = () => {
                         
                         <FlatList data={location} renderItem={({item,index}) => (
                             <TouchableOpacity onPress={()=>{
-                                console.log(`change value to ${item.name}, ${item.country} `)
                                 setSearchValue(`${item.name}, ${item.country}`)
                                 setSearchHolder(`${item.name}, ${item.country}`)
                                 toggleSearch(!showSearch)
+                                setCoordinates(item)
                             }}
                             onBlur={()=>{
-                                console.log('yes')
                             }}
                             >
                             
