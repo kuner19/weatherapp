@@ -1,5 +1,5 @@
 import { Stack } from "expo-router";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import {useFonts} from 'expo-font';
 import { Text } from "react-native";
 import * as Splashscreen from 'expo-splash-screen';
@@ -8,19 +8,35 @@ import "../global.css"
 Splashscreen.preventAutoHideAsync()
 
 const Layout = () => {
-    const [fontsLoaded] = useFonts({
+    const [loaded,error] = useFonts({
         // Inter: require('../assets/fonts/Inter.ttf'),
         // Robot : require('../assets/fonts/Roboto-Light.ttf')
+        'JosefinSlab': require('../assets/fonts/JosefinSlab-Regular.ttf')
     })
 
-    const onLayoutRootView = useCallback(async ()=>{
-        if (fontsLoaded){
-            await Splashscreen.hideAsync()
-        }
+    // const onLayoutRootView = useEffect(async ()=>{
+    //     if (loaded || error){
+
+
+    //         console.log(loaded)
+    //         console.log(error)
+    //         await Splashscreen.hideAsync()
+    //     }
+    //     Splashscreen.hideAsync()
+    // },[loaded , error])
+
+
+    const onLayoutRootView = useEffect(()=>{
+        if(loaded){
+            console.log(loaded)
+                    Splashscreen.hideAsync()
+        }  
         Splashscreen.hideAsync()
-    },[])
-    Splashscreen.hideAsync()
-    if (!fontsLoaded){
+        
+    },[loaded,error])
+    if (!loaded){
+
+        console.log('not loaded')
         Splashscreen.hideAsync()
         return null
     }  

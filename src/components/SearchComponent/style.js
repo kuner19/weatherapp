@@ -15,7 +15,7 @@ const styles = (w,h,radius) => StyleSheet.create({
     },
 
     icon_bg: {
-        backgroundColor:'rgba(255,255,255,.1)',
+        backgroundColor:'rgba(0,0,0,.1)',
         display:'flex',
         justifyContent:'center',
         width:w,

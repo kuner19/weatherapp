@@ -15,14 +15,15 @@ const Home = () =>{
     const [weather, setWeather] = useState([''])
     const [forecast, setForecast] = useState([''])
     const [futureForcast, setFutureForecast] = useState([''])
-    const [coordinates, setCoordinates] =useState<any>([''])
+    const [coordinates, setCoordinates] =useState<any>({})
 
 
-    useEffect(()=> {
-        fetchWeather(coordinates)
+    useEffect(()=> {    
+        if (Object.keys(coordinates).length !== 0)    
+            fetchWeather(coordinates)
     },[coordinates])
 
-   const todayweather =  bgSelect('rainy')
+   const todayweather =  bgSelect('snowy')
 
     return  (
 
