@@ -49,14 +49,14 @@ const styles = (w,h,font) => StyleSheet.create({
         alignItems:'center'
     },
     temp_img: {
-        width:rS(25),
-        height:rS(25),
-        transform:[{ translateX: rMS(-20,.6)},{translateY: rMS(10,.6)}]
+        width:rS(16),
+        height:rS(16),
+        transform:[{ translateX: rMS(-10,.6)},{translateY: rMS(7,.6)}]
     },
     temp_img_small: {
-        width:rS(7),
-        height:rS(7),
-        transform:[{ translateX: rMS(-5,.6)},{translateY: rMS(3,.6)}]
+        width:rS(6),
+        height:rS(6),
+        transform:[{ translateX: rMS(-4,.6)},{translateY: rMS(2.5,.6)}]
     },
     humid_toast : {
         height:rV(h),
@@ -66,7 +66,7 @@ const styles = (w,h,font) => StyleSheet.create({
         alignItems:'center',
         flexDirection:'row',
         backgroundColor:'rgba(0,0,0,.1)',
-        padding:12,
+        padding:15,
         borderRadius: rV(30),
         justifyContent:'space-between'
 
