@@ -27,7 +27,7 @@ const fetchLocation  = async (loc:string) => {
               location.push(items ={
                 name :item.name,
                 country :item.country,
-                admin1:item.admin1,
+                admin1:item.admin1 || '',
                 long : item.longitude,
                 lat : item.latitude
               })
