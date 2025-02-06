@@ -18,8 +18,7 @@ const Layout = () => {
     //     if (loaded || error){
 
 
-    //         console.log(loaded)
-    //         console.log(error)
+
     //         await Splashscreen.hideAsync()
     //     }
     //     Splashscreen.hideAsync()

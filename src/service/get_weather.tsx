@@ -17,15 +17,9 @@ const fetchWeather  = async (coords:Location) => {
     const location:any = []
     let items : Location
         try {
-          const response = await axios.get(API_URL+`forecast?latitude=${coords.lat}&longitude=${coords.long}&current=temperature_2m,relative_humidity_2m,is_day,rain,weather_code&hourly=precipitation_probability&precipitation_unit=inch`);
-          console.log(response.data)
-          if (response.data.results){
-
-             response.data.results.map((item:any,index:any)=> (
-
-
-              console.log(response.data.results)
-            ))
+          const response = await axios.get(API_URL+`forecast?latitude=${coords.lat}&longitude=${coords.long}&current=temperature_2m,relative_humidity_2m,is_day,rain,weather_code,wind_speed_10m&hourly=precipitation_probability&precipitation_unit=inch`);
+          if (response.data){
+            return response.data
           }
          
           

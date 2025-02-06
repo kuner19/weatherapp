@@ -6,24 +6,30 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { bgSelect } from "@/src/style/bg_selector";
 import SearchComponent from "@/src/components/SearchComponent/SearchComponent";
 import WeatherComponent from "@/src/components/WeatherComponent/WeatherComponent";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import fetchWeather from "@/src/service/get_weather";
 
 
 
 const Home = () =>{
-    const [weather, setWeather] = useState([''])
-    const [forecast, setForecast] = useState([''])
+    const [weather, setWeather] = useState<any>([])
+    const [currentForecast, setCurrentForecast] = useState([''])
     const [futureForcast, setFutureForecast] = useState([''])
     const [coordinates, setCoordinates] =useState<any>({})
-
+    
 
     useEffect(()=> {    
-        if (Object.keys(coordinates).length !== 0)    
-            fetchWeather(coordinates)
+        if (Object.keys(coordinates).length !== 0){
+            fetchWeather(coordinates).then((data)=>{
+                setCurrentForecast(data.current)
+                setWeather(bgSelect(data.current.weather_code,data.current.is_day))
+            })
+        }
+           
     },[coordinates])
 
-   const todayweather =  bgSelect('snowy')
+   
+    // const we =  bgSelect(currentForecast.weather_code)
 
     return  (
 
@@ -31,11 +37,11 @@ const Home = () =>{
          <Stack.Screen options={{headerTitle : "" , headerShown:false}}/>
          <LinearGradient
         // Button Linear Gradient
-        colors={[todayweather?.bg1 || '',todayweather?.bg2 || '']}>
+        colors={[weather?.bg1 || '',weather?.bg2 || '']}>
          <View className="p-[20] flex items-center" style={{height:rV(450)}}>
 
           <SearchComponent setCoordinates = {setCoordinates}/>
-          <WeatherComponent/>
+          <WeatherComponent coordinates={coordinates} currentForecast={currentForecast}/>
          </View>
          </LinearGradient>
       </SafeAreaView>

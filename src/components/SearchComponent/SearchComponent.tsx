@@ -68,8 +68,8 @@ const SearchComponent = ({setCoordinates} : any) => {
                         
                         <FlatList data={location} renderItem={({item,index}) => (
                             <TouchableOpacity onPress={()=>{
-                                setSearchValue(`${item.name}, ${item.country}`)
-                                setSearchHolder(`${item.name}, ${item.country}`)
+                                setSearchValue(`${item.name} ${item.admin1}, ${item.country}`)
+                                setSearchHolder(`${item.name} ${item.admin1}, ${item.country}`)
                                 toggleSearch(!showSearch)
                                 setCoordinates(item)
                             }}
@@ -79,7 +79,7 @@ const SearchComponent = ({setCoordinates} : any) => {
                             
                                 <View style={[styles(('')).loc_container, {backgroundColor: (index + 1) % 2 === 0 ? 'rgba(155,155,155,.2)' : 'white'}]}>
                                 <Image source={image.pin} style={{width:rMS(15), height:rMS(15)}}/>
-                                <Text style={{fontSize:rMS(12)}}>{item.name}, {item.country}</Text>
+                                <Text style={{fontSize:rMS(12)}}>{item.name} {item.admin1}, {item.country}</Text>
 
                                 </View>
                             </TouchableOpacity>

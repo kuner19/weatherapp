@@ -1,31 +1,39 @@
+import getWeatherDescription from "./weatherTable"
+import image from '@/src/style/images'
 
+export const bgSelect = (weatherCode:number,isday:number) => {
+    
+    const weather = getWeatherDescription(weatherCode,isday)
 
-export const bgSelect = (weather:string) => {
-  
-
+    console.log(weather,'bgselect')
     const forecasts =[
         {
             weatherName:'sunny',
-            bg1:'#F6D759',
-            bg2:'#AC4403'
-        },
-        {
-            weatherName:'clear',
+            src: image.sunny,
             bg1:'#45AFDC',
             bg2:'#0057D9'
         },
         {
+            weatherName:'night',
+            src: image.night,
+            bg1:'#221A26',
+            bg2:'#2C0781'
+        },
+        {
             weatherName:'snowy',
-            bg1:'#A2B7D2',
-            bg2:'#02255B'
+            src: image.snowy,
+            bg1:'#8B8B8B',
+            bg2:'#1495CC'
         },
         {
             weatherName:'rainy',
+            src: image.rainy,
             bg1:'#031716',
             bg2:'#274D60'
         },
         {
-            weatherName:'stormy',
+            weatherName:'thunderstorm',
+            src: image.thunderstorm,
             bg1:'#522C5D',
             bg2:'#150016'
         }
