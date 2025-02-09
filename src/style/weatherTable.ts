@@ -1,7 +1,7 @@
 const getWeatherDescription = (weatherCode:number,isday:number) => {
     switch (true) {
       case (weatherCode >= 0 && weatherCode <= 19):
-        return Boolean(isday)? 'sunny' : 'night'
+        return "clear"
       case (weatherCode >= 20 && weatherCode <= 29):
         return "rainy";
       case (weatherCode >= 30 && weatherCode <= 49):

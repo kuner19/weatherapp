@@ -1,5 +1,6 @@
 import magnify from '../../assets/icons/magnify.png'
-import pin from '../../assets/icons/pin_white.png'
+import pin_white from '../../assets/icons/pin_white.png'
+import pin_black from '../../assets/icons/pin.png'
 import sunny from '../../assets/icons/sunny.png'
 import temp_white from '../../assets/icons/temp.png'
 import humid from '../../assets/icons/humidity.png'
@@ -12,7 +13,8 @@ import rainy from '../../assets/icons/rainy.png'
 
 export default {
     magnify,
-    pin,
+    pin_white,
+    pin_black,
     sunny,
     temp_white,
     humid,

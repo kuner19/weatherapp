@@ -1,5 +1,5 @@
 import { rMS, rS, rV } from "@/src/style/responsive"
-import { FlatList, Image, Text, TextInput, TouchableOpacity, View } from "react-native"
+import { FlatList, Image, Pressable, Text, TextInput, TouchableOpacity, View } from "react-native"
 import styles from '@/src/components/SearchComponent/style'
 import image from '@/src/style/images'
 import { useEffect, useState } from "react"
@@ -14,13 +14,12 @@ const SearchComponent = ({setCoordinates} : any) => {
     const [weather, setWeather] = useState<any>([])
 
     useEffect(()=>{
-
         if (searchValue === ''){
             toggleSearch(false)
         } else 
             toggleSearch(true)
         
-    },[searchValue])
+    },[searchValue,searchHolder])
 
 
     useEffect(()=>{
@@ -44,10 +43,6 @@ const SearchComponent = ({setCoordinates} : any) => {
                 <View className="items-center" style={styles(rMS(250, .5),rMS(40,.5),rV(30)).container}> 
                     <TextInput placeholder={searchHolder} value={searchValue} placeholderTextColor='rgba(255,255,255,.3)' style={{height:rMS(40), width:rMS(200,.5),fontSize:rMS(12),color:'white'}} 
                     onChangeText={setSearchValue}
-                    
-                    onBlur={()=>{
-                        toggleSearch(false)
-                    }}
                     />
                     <TouchableOpacity onPress={()=> {
                         toggleSearch(false)
@@ -64,25 +59,36 @@ const SearchComponent = ({setCoordinates} : any) => {
 
 
         {location.length > 0 && showSearch ? (
+           
                     <View style={{width:rMS(325,.5), maxHeight:rMS(100), backgroundColor:'white', marginTop:3}}>
-                        
                         <FlatList data={location} renderItem={({item,index}) => (
-                            <TouchableOpacity onPress={()=>{
-                                setSearchValue(`${item.name} ${item.admin1}, ${item.country}`)
-                                setSearchHolder(`${item.name} ${item.admin1}, ${item.country}`)
-                                toggleSearch(!showSearch)
+                              
+                            
+                              <TouchableOpacity onPress={()=>{  
+                                console.log(item)
+                                setSearchValue(`${item.name} ${item.admin1 || ''}, ${item.country || ''}`)
+                                setSearchHolder(`${item.name} ${item.admin1 || ''}, ${item.country || ''}`)
+                                toggleSearch(false)
                                 setCoordinates(item)
+                                setLocations([])
                             }}
+
                             onBlur={()=>{
+                                
                             }}
+
                             >
                             
                                 <View style={[styles(('')).loc_container, {backgroundColor: (index + 1) % 2 === 0 ? 'rgba(155,155,155,.2)' : 'white'}]}>
-                                <Image source={image.pin} style={{width:rMS(15), height:rMS(15)}}/>
-                                <Text style={{fontSize:rMS(12)}}>{item.name} {item.admin1}, {item.country}</Text>
+                                <Image source={image.pin_black} style={{width:rMS(15), height:rMS(15)}}/>
+                            
+                                <Text style={{fontSize:rMS(12)}}>{item.name || ''} {item.admin1 || ''}, {item.country || ''}</Text>
+                             
 
                                 </View>
                             </TouchableOpacity>
+                         
+                          
                            
                            
                   )}/>

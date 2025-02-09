@@ -2,22 +2,13 @@ import getWeatherDescription from "./weatherTable"
 import image from '@/src/style/images'
 
 export const bgSelect = (weatherCode:number,isday:number) => {
-    
     const weather = getWeatherDescription(weatherCode,isday)
-
-    console.log(weather,'bgselect')
     const forecasts =[
         {
-            weatherName:'sunny',
-            src: image.sunny,
-            bg1:'#45AFDC',
-            bg2:'#0057D9'
-        },
-        {
-            weatherName:'night',
-            src: image.night,
-            bg1:'#221A26',
-            bg2:'#2C0781'
+            weatherName:'clear',
+            src: (isday ? image.sunny : image.night),
+            bg1: (isday ? '#45AFDC' : '#221A26'),
+            bg2: (isday ? '#0057D9' : '#2C0781')
         },
         {
             weatherName:'snowy',
@@ -41,9 +32,9 @@ export const bgSelect = (weatherCode:number,isday:number) => {
 
 
     return (
+        
         forecasts.find( x => x.weatherName === weather)
     )
-
 
 
     }

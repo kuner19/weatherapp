@@ -4,16 +4,15 @@ import styles from "../WeatherComponent/style"
 import { rMS, rS, rV } from "@/src/style/responsive"
 import moment from 'moment'
 import getWeatherDescription from "@/src/style/weatherTable"
-import imgSelect from "@/src/vars/variable"
+import { imgSelect } from "@/src/vars/variable"
+
 
 
 const WeatherComponent = ({coordinates,currentForecast}:any) => {
 
-
-    
-    const weather = getWeatherDescription(currentForecast.weather_code,currentForecast.is_day)
-    const weatherImg = imgSelect(weather)
-    console.log(weatherImg)
+     const weather = getWeatherDescription(currentForecast.weather_code,currentForecast.is_day)
+    const weatherImg = imgSelect(weather,currentForecast.is_day)
+ 
     return (
         <View className='flex flex-row' style={styles(280,350).container}>
 
@@ -21,7 +20,7 @@ const WeatherComponent = ({coordinates,currentForecast}:any) => {
                 <Text style={styles(0,0,20).text}>
                 {coordinates.name}
                 </Text>
-                <Image source={image.pin} style={{width:rMS(15,.5),height:rMS(15,.5),margin:5}}/>
+                <Image source={image.pin_white} style={{width:rMS(15,.5),height:rMS(15,.5),margin:5}}/>
             </View>
 
             <View style={styles(250,0,0).forecast_container}>

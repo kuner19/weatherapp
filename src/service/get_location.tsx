@@ -1,15 +1,9 @@
 import axios from 'axios'
 import { Text } from 'react-native'
+import { Location } from '../vars/location.interface'
 
 
 
-interface Location {
-  name:string,
-  country:string,
-  admin1:string,
-  long:number,
-  lat: number
-}
 
 
 const fetchLocation  = async (loc:string) => {
@@ -28,8 +22,8 @@ const fetchLocation  = async (loc:string) => {
                 name :item.name,
                 country :item.country,
                 admin1:item.admin1 || '',
-                long : item.longitude,
-                lat : item.latitude
+                longitude : item.longitude,
+                latitude : item.latitude
               })
             ))
               return location
