@@ -5,6 +5,7 @@ import { rMS, rS, rV } from "@/src/style/responsive"
 import moment from 'moment'
 import getWeatherDescription from "@/src/style/weatherTable"
 import { imgSelect } from "@/src/vars/variable"
+import LottieView from "lottie-react-native"
 
 
 
@@ -20,12 +21,17 @@ const WeatherComponent = ({coordinates,currentForecast}:any) => {
                 <Text style={styles(0,0,20).text}>
                 {coordinates.name}
                 </Text>
-                <Image source={image.pin_white} style={{width:rMS(15,.5),height:rMS(15,.5),margin:5}}/>
+
+                <Image source={image.pin_white} style={{width:rMS(12,.5),height:rMS(12,.5),margin:5}}/>
             </View>
 
             <View style={styles(250,0,0).forecast_container}>
                 <View className='bg-amber-600' style={styles().column_container}>
-                    <Image source={weatherImg?.src} style={{width: rMS(100,.9),height:rMS(100,.9)}}/>
+                <LottieView source={weatherImg?.src} 
+                    style={{width: rMS(100,.8), height: rMS(100,.8)}}
+                    autoPlay
+                    loop/>
+                    {/* <Image source={weatherImg?.src} style={{width: rMS(100,.9),height:rMS(100,.9)}}/> */}
                     <Text  style={styles(0,0,16).text}>{weather}</Text>
                 </View>
             <View>

@@ -18,7 +18,8 @@ const styles = (w,h,font) => StyleSheet.create({
     pin_container : {
         display: 'flex',
         flexDirection:'row',
-        alignItems:'center'
+        alignItems:'center',
+        marginTop:5
 
     },
 

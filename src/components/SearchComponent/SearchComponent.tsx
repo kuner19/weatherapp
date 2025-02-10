@@ -12,7 +12,6 @@ const SearchComponent = ({setCoordinates} : any) => {
     const [searchHolder, setSearchHolder] = useState('Search your location...')
     const [location, setLocations] = useState<any>([])
     const [weather, setWeather] = useState<any>([])
-
     useEffect(()=>{
         if (searchValue === ''){
             toggleSearch(false)
@@ -60,7 +59,7 @@ const SearchComponent = ({setCoordinates} : any) => {
 
         {location.length > 0 && showSearch ? (
            
-                    <View style={{width:rMS(325,.5), maxHeight:rMS(100), backgroundColor:'white', marginTop:3}}>
+                    <View style={{width:rMS(350,.5), maxHeight:rMS(150), backgroundColor:'white', marginTop:3, position:'absolute', top:50, zIndex:999}}>
                         <FlatList data={location} renderItem={({item,index}) => (
                               
                             

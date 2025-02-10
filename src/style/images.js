@@ -9,7 +9,13 @@ import night from '../../assets/icons/nighty.png'
 import snowy from '../../assets/icons/snowy.png'
 import thunderstorm from '../../assets/icons/thunderstorm.png'
 import rainy from '../../assets/icons/rainy.png'
-
+import loading from '../../assets/icons/loading.json'
+import sunny_lot from '../../assets/lottie/sunny.json'
+import night_lot from '../../assets/lottie/night.json'
+import snowy_lot from '../../assets/lottie/snowy.json'
+import rainy_night from '../../assets/lottie/rainy_night.json'
+import rainy_sunny from '../../assets/lottie/rainy_sunny.json'
+import thunderstorm_lot from '../../assets/lottie/thunderstorm.json'
 
 export default {
     magnify,
@@ -22,5 +28,13 @@ export default {
     night,
     snowy,
     thunderstorm,
-    rainy
+    rainy,
+    loading,
+    sunny_lot,
+    night_lot,
+    thunderstorm_lot,
+    rainy_sunny,
+    rainy_night,
+    snowy_lot
+    
 };

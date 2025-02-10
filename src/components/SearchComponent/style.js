@@ -1,4 +1,4 @@
-const { StyleSheet } = require("react-native");
+const { StyleSheet, StatusBar } = require("react-native");
 
 const styles = (w,h,radius) => StyleSheet.create({
     container : {
@@ -27,9 +27,16 @@ const styles = (w,h,radius) => StyleSheet.create({
             padding : 20 ,
             display : 'flex',
             flexDirection:'row', 
-    }
+    },
 
-   
+    loadingContainer:{
+        flex:1,
+        backgroundColor:"#FFFFFF",
+        paddingTop:StatusBar.currentHeight,
+        justifyContent: "center",
+        alignItems:'center'
+        
+    }
 })
 
 
