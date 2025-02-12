@@ -1,19 +1,16 @@
 
-import { rMS, rS, rV } from "@/src/style/responsive";
 import { Stack } from "expo-router";
-import { Text,SafeAreaView,View, Dimensions, FlatList, TouchableOpacity} from "react-native";
+import { SafeAreaView,View} from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
 import SearchComponent from "@/src/components/SearchComponent/SearchComponent";
 import WeatherComponent from "@/src/components/WeatherComponent/WeatherComponent";
 import { useCallback, useEffect, useState } from "react";
 import fetchWeather from "@/src/service/get_weather";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Location from 'expo-location'
 import { bgSelect } from "@/src/vars/variable";
-import styles from "@/src/components/SearchComponent/style";
 import { ActivityIndicator } from "react-native";
-import LottieView from "lottie-react-native";
-import images from "@/src/style/images";
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import FutureForecastComponent from "@/src/components/FutureForecastComponent/FutureForecastComponent";
 
 
 const Home = () =>{
@@ -68,8 +65,6 @@ const Home = () =>{
             fetchWeather(coordinates.latitude, coordinates.longitude).then((data)=>{
                 setCurrentForecast(data.current)
                 setWeather(bgSelect(data.current.weather_code,data.current.is_day))
-
-                console.log('yes')
                 setIsLoading(false)
             })
         }
@@ -98,8 +93,8 @@ const Home = () =>{
          <Stack.Screen options={{headerTitle : "" , headerShown:false}}/>
          <LinearGradient
         // Button Linear Gradient
-        colors={[weather?.bg1 || '',weather?.bg2 || '']}>
-         <View className="p-[20] flex items-center" style={{height:rV(450)}}>
+        colors={[weather?.bg1 || '#0057D9',weather?.bg2 || '#2C0781']}>
+         <View className="p-[20] flex items-center" style={{height:hp(70)}}>
             {isLoading ? 
             
             <View style={{height:'100%',width:'100%',alignContent:'center',display:'flex', justifyContent:'center'}}>
@@ -109,6 +104,7 @@ const Home = () =>{
             <>
                   <SearchComponent setCoordinates = {setCoordinates}/>
                   <WeatherComponent coordinates={coordinates} currentForecast={currentForecast}/>
+                  <FutureForecastComponent/>
             </>
       
             }

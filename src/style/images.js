@@ -16,6 +16,7 @@ import snowy_lot from '../../assets/lottie/snowy.json'
 import rainy_night from '../../assets/lottie/rainy_night.json'
 import rainy_sunny from '../../assets/lottie/rainy_sunny.json'
 import thunderstorm_lot from '../../assets/lottie/thunderstorm.json'
+import droplet from '../../assets/lottie/droplet.json'
 
 export default {
     magnify,
@@ -35,6 +36,6 @@ export default {
     thunderstorm_lot,
     rainy_sunny,
     rainy_night,
-    snowy_lot
-    
+    snowy_lot,
+    droplet
 };

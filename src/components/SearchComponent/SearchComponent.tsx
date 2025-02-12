@@ -4,6 +4,7 @@ import styles from '@/src/components/SearchComponent/style'
 import image from '@/src/style/images'
 import { useEffect, useState } from "react"
 import fetchLocation from "../../service/get_location"
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 const SearchComponent = ({setCoordinates} : any) => {
 
@@ -39,8 +40,8 @@ const SearchComponent = ({setCoordinates} : any) => {
 
     return (
         <View className="flex items-center">
-                <View className="items-center" style={styles(rMS(250, .5),rMS(40,.5),rV(30)).container}> 
-                    <TextInput placeholder={searchHolder} value={searchValue} placeholderTextColor='rgba(255,255,255,.3)' style={{height:rMS(40), width:rMS(200,.5),fontSize:rMS(12),color:'white'}} 
+                <View className="items-center" style={styles().container}> 
+                    <TextInput placeholder={searchHolder} value={searchValue} placeholderTextColor='rgba(255,255,255,.3)' style={{height:rV(35), width:rS(200),fontSize:hp(1.5),color:'white'}} 
                     onChangeText={setSearchValue}
                     />
                     <TouchableOpacity onPress={()=> {
@@ -48,8 +49,8 @@ const SearchComponent = ({setCoordinates} : any) => {
                     }}
                     
                      >
-                    <View className="items-center" style={styles(rMS(25),rMS(25),rMS(25)).icon_bg} >
-                    <Image source={image.magnify} style={{width:rMS(15), height:rMS(15)}}/>
+                    <View className="items-center" style={styles().icon_bg} >
+                    <Image source={image.magnify} style={{width:hp(3), height:hp(3)}}/>
                </View>
                     </TouchableOpacity>
                  

@@ -6,7 +6,7 @@ import moment from 'moment'
 import getWeatherDescription from "@/src/style/weatherTable"
 import { imgSelect } from "@/src/vars/variable"
 import LottieView from "lottie-react-native"
-
+import { heightPercentageToDP as hp  } from "react-native-responsive-screen"
 
 
 const WeatherComponent = ({coordinates,currentForecast}:any) => {
@@ -15,33 +15,33 @@ const WeatherComponent = ({coordinates,currentForecast}:any) => {
     const weatherImg = imgSelect(weather,currentForecast.is_day)
  
     return (
-        <View className='flex flex-row' style={styles(280,350).container}>
+        <View className='flex flex-row' style={styles(rMS(500,.7),rMS(280,.2)).container}>
 
             <View className="flex flex-row" style= {styles().pin_container}>
-                <Text style={styles(0,0,20).text}>
+                <Text style={styles(0,0,3).text}>
                 {coordinates.name}
                 </Text>
 
                 <Image source={image.pin_white} style={{width:rMS(12,.5),height:rMS(12,.5),margin:5}}/>
             </View>
 
-            <View style={styles(250,0,0).forecast_container}>
+            <View style={styles(200,0,0).forecast_container}>
                 <View className='bg-amber-600' style={styles().column_container}>
                 <LottieView source={weatherImg?.src} 
-                    style={{width: rMS(100,.8), height: rMS(100,.8)}}
+                    style={{width: hp(10), height: hp(10)}}
                     autoPlay
                     loop/>
                     {/* <Image source={weatherImg?.src} style={{width: rMS(100,.9),height:rMS(100,.9)}}/> */}
-                    <Text  style={styles(0,0,16).text}>{weather}</Text>
+                    <Text  style={styles(0,0,2).text}>{weather}</Text>
                 </View>
             <View>
                 <View style={styles().row_container}>
-                    <Text style={styles(0,0,40).text}>{currentForecast.temperature_2m}&deg;</Text>
+                    <Text style={styles(0,0,5).text}>{currentForecast.temperature_2m}&deg;</Text>
                     <Image source={image.temp_white} style={styles().temp_img}/>
                 </View>
-                <Text  style={styles(0,0,16).text}>{moment(currentForecast.time).format('LT')}</Text>
-                <Text  style={styles(0,0,16).text}>{moment(currentForecast.time).format('l')}</Text>
-                <Text  style={styles(0,0,16).text}>{moment(currentForecast.time).format('dddd')}</Text>
+                <Text  style={styles(0,0,2).text}>{moment(currentForecast.time).format('LT')}</Text>
+                <Text  style={styles(0,0,2).text}>{moment(currentForecast.time).format('l')}</Text>
+                <Text  style={styles(0,0,2).text}>{moment(currentForecast.time).format('dddd')}</Text>
             </View>
             </View>
 
@@ -49,20 +49,20 @@ const WeatherComponent = ({coordinates,currentForecast}:any) => {
             <View style={styles(290,70).humid_toast}>
             <View style={styles().column_container}>
                 <View style={styles().row_container}>
-                    <Text style={styles(0,0,16).text}>Humidity</Text>
+                    <Text style={styles(0,0,2).text}>Humidity</Text>
                     <Image source={image.humid}  style={{width: rMS(12,.9),height:rMS(12,.9), marginLeft:5}} />
                 </View>
                 <View style={styles().row_container}>
-                    <Text style={styles(0,0,16).text}>{currentForecast.relative_humidity_2m}%</Text>
+                    <Text style={styles(0,0,2).text}>{currentForecast.relative_humidity_2m}%</Text>
                 </View>
             </View>
             <View style={styles().column_container}>
                 <View style={styles().row_container}>
-                    <Text style={styles(0,0,16).text}>Wind</Text>
+                    <Text style={styles(0,0,2).text}>Wind</Text>
                     <Image source={image.wind}  style={{width: rMS(12,.9),height:rMS(12,.9), marginLeft:5}} />
                 </View>
                 <View style={styles().row_container}>
-                    <Text style={styles(0,0,16).text}>{currentForecast.wind_speed_10m} Km/h</Text>
+                    <Text style={styles(0,0,2).text}>{currentForecast.wind_speed_10m} Km/h</Text>
                 </View>
             </View>
             </View> 

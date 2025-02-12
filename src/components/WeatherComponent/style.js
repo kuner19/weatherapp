@@ -1,18 +1,22 @@
-const { StyleSheet } = require("react-native");
+const { StyleSheet, Dimensions } = require("react-native");
 
 import { rMS, rS, rV } from "@/src/style/responsive"
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
+const {width,height} = Dimensions.get('window')
+console.log(width,height)
 const styles = (w,h,font) => StyleSheet.create({
 
-
+    
     container : {
-        height:rV(h),
-        width:rS(w),
+        height:height > 990 && height < 1240 ? hp(33) : hp(34),
+        width:wp(100),
         borderColor:'#FFFFFF',
         display:'flex',
         alignItems:'center',
         flexDirection:'column',
-        padding:12
+        padding:12,
+        // backgroundColor:'rgba(0,0,0,.5)'
     },
     
     pin_container : {
@@ -35,7 +39,7 @@ const styles = (w,h,font) => StyleSheet.create({
     
     text:{
         fontFamily:'JosefinSlab',
-        fontSize:rMS(font,.8),
+        fontSize:hp(font),
         color:'white'
     },
     row_container : {
@@ -67,7 +71,7 @@ const styles = (w,h,font) => StyleSheet.create({
         alignItems:'center',
         flexDirection:'row',
         backgroundColor:'rgba(0,0,0,.1)',
-        padding:15,
+        padding:hp(3),
         borderRadius: rV(30),
         justifyContent:'space-between'
 
