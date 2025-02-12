@@ -11,7 +11,7 @@ import { bgSelect } from "@/src/vars/variable";
 import { ActivityIndicator } from "react-native";
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import FutureForecastComponent from "@/src/components/FutureForecastComponent/FutureForecastComponent";
-
+import moment from 'moment'
 
 const Home = () =>{
     const [weather, setWeather] = useState<any>([])
@@ -19,7 +19,6 @@ const Home = () =>{
     const [futureForcast, setFutureForecast] = useState([''])
     const [coordinates, setCoordinates] =useState<any>({})
     const [isLoading, setIsLoading] = useState(true)
-
     // Load weather based on user device location
 
 
@@ -35,7 +34,6 @@ const Home = () =>{
                         }
                   
            let location = await Location.getCurrentPositionAsync({});
-                console.log(location,'layout')
             
             const userLocation = await Location.reverseGeocodeAsync({
                 latitude: location.coords.latitude,
@@ -57,6 +55,18 @@ const Home = () =>{
     
 
     
+    const createFlatlist = (hourly:any,percentage:any) => {
+
+        const percentages =percentage ?? [];
+         const times = hourly ?? [];
+
+        const flatData =percentages.map((value:any, index:any) => ({
+            percentage: value,
+            time: moment(times[index]).format('LT')
+          }));
+         setFutureForecast(flatData)
+    }
+
 
     useEffect(()=> {    
 
@@ -64,6 +74,7 @@ const Home = () =>{
         if (Object.keys(coordinates).length !== 0){
             fetchWeather(coordinates.latitude, coordinates.longitude).then((data)=>{
                 setCurrentForecast(data.current)
+                createFlatlist(data.hourly.time.slice(0,24),data.hourly.precipitation_probability.slice(0,24))
                 setWeather(bgSelect(data.current.weather_code,data.current.is_day))
                 setIsLoading(false)
             })
@@ -72,20 +83,7 @@ const Home = () =>{
     },[coordinates])
 
 
-
-    // if (isLoading){
-    //     return(
-    //         <SafeAreaView style={styles().loadingContainer}>
-    //              <Stack.Screen options={{headerTitle : "" , headerShown:false}}/>
-    //                 <ActivityIndicator size='large' color='#031716'>
-                        
-    //                 </ActivityIndicator>
-    //         </SafeAreaView>
-    //     )
-    // }
- 
-
-    
+   
 
     return  (
 
@@ -104,7 +102,7 @@ const Home = () =>{
             <>
                   <SearchComponent setCoordinates = {setCoordinates}/>
                   <WeatherComponent coordinates={coordinates} currentForecast={currentForecast}/>
-                  <FutureForecastComponent/>
+                  <FutureForecastComponent future_data = {futureForcast}/>
             </>
       
             }

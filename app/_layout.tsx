@@ -98,8 +98,6 @@ const Layout = () => {
 
 
     if (!loaded){
-
-        console.log('not loaded')
         // Splashscreen.hideAsync()
         return null
     }  

@@ -4,7 +4,6 @@ import { rMS, rS, rV } from "@/src/style/responsive"
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 const {width,height} = Dimensions.get('window')
-console.log(width,height)
 const styles = (w,h,font) => StyleSheet.create({
 
     

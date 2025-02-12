@@ -7,22 +7,16 @@ import LottieView from "lottie-react-native";
 import images from "@/src/style/images";
 import style from "@/src/components/FutureForecastComponent/style";
 
-const FutureForecastComponent = ()=> {
+const FutureForecastComponent = ({future_data}:any)=> {
 
-    const data = [
-        { percentage: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100] },
-        { time: ["1:00", "2:00", "3:00", "24:00", "5:00", "6:00", "7:00", "8:00", "9:00", "10:00"] }
-      ];
-      
 
-      const percentages = data[0]?.percentage ?? [];
-      const times = data[1]?.time ?? [];
+   type data = {
+    time : string,
+    percentage : number
+   }
 
-      const flatData =percentages.map((value, index) => ({
-        percentage: value,
-        time: times[index]
-      }));
-
+   
+   const rain_percentage:data[]= future_data
 
     return(
             <View style={styles().container}>
@@ -36,7 +30,7 @@ const FutureForecastComponent = ()=> {
                 }} />
 
                 <View style={styles().row_container}>
-                    <FlatList  horizontal = {true} showsHorizontalScrollIndicator={false} data={Object.values(flatData)} renderItem={({item,index})=>(
+                    <FlatList  horizontal = {true} showsHorizontalScrollIndicator={false} data={Object.values(rain_percentage)} renderItem={({item,index})=>(
                         <>
                         <View style={styles().rain_container}>
                         <Text style={styles(2).text}>{item.percentage}%</Text>

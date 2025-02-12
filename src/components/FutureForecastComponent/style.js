@@ -26,7 +26,7 @@ const { StyleSheet } = require("react-native");
         height:height > 990 && height < 1240 ? hp(15) : hp(14),
         width:height > 990 && height < 1240 ? wp(25) : wp(18),
         backgroundColor:'rgba(0,0,0,.2)',
-        marginHorizontal:10,
+        marginHorizontal:5,
         borderRadius:hp(3),
         display:'flex',
         justifyContent:'center',

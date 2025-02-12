@@ -65,7 +65,6 @@ const SearchComponent = ({setCoordinates} : any) => {
                               
                             
                               <TouchableOpacity onPress={()=>{  
-                                console.log(item)
                                 setSearchValue(`${item.name} ${item.admin1 || ''}, ${item.country || ''}`)
                                 setSearchHolder(`${item.name} ${item.admin1 || ''}, ${item.country || ''}`)
                                 toggleSearch(false)
