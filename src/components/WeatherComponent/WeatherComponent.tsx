@@ -36,7 +36,7 @@ const WeatherComponent = ({coordinates,currentForecast}:any) => {
                 </View>
             <View>
                 <View style={styles().row_container}>
-                    <Text style={styles(0,0,5).text}>{currentForecast.temperature_2m}&deg;</Text>
+                    <Text style={styles(0,0,5).text}>{currentForecast.temperature_2m.toFixed(1)}&deg;</Text>
                     <Image source={image.temp_white} style={styles().temp_img}/>
                 </View>
                 <Text  style={styles(0,0,2).text}>{moment(currentForecast.time).format('LT')}</Text>

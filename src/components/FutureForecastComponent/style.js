@@ -8,7 +8,7 @@ const {width,height} = Dimensions.get('window')
 
 const { StyleSheet } = require("react-native");
 
- const style = (font) => StyleSheet.create({
+ const styles = (font) => StyleSheet.create({
 
         container : {
         height:height > 990 && height < 1240 ? hp(25) : hp(23),
@@ -40,6 +40,13 @@ const { StyleSheet } = require("react-native");
         transform: [{translateY:hp(-2.75)},{translateX:hp(-2)}]
         
     },
+    rain:{
+        width: hp(5), 
+        height: hp(5),
+        position:'absolute',
+        transform: [{translateY:hp(-2.75)},{translateX:hp(-2)}]
+        
+    },
     text:{
         fontFamily:'JosefinSlab',
         fontSize:hp(font),
@@ -56,4 +63,4 @@ const { StyleSheet } = require("react-native");
 })
 
 
-export default style
+export default styles

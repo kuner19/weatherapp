@@ -12,6 +12,7 @@ import { ActivityIndicator } from "react-native";
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import FutureForecastComponent from "@/src/components/FutureForecastComponent/FutureForecastComponent";
 import moment from 'moment'
+import DayForecast from "@/src/components/DayForecast/DayForecast";
 
 const Home = () =>{
     const [weather, setWeather] = useState<any>([])
@@ -19,6 +20,7 @@ const Home = () =>{
     const [futureForcast, setFutureForecast] = useState([''])
     const [coordinates, setCoordinates] =useState<any>({})
     const [isLoading, setIsLoading] = useState(true)
+    const [daysForecast, setDaysForecast] = useState<any>([])
     // Load weather based on user device location
 
 
@@ -55,7 +57,7 @@ const Home = () =>{
     
 
     
-    const createFlatlist = (hourly:any,percentage:any) => {
+    const createFutureFlatlist = (hourly:any,percentage:any) => {
 
         const percentages =percentage ?? [];
          const times = hourly ?? [];
@@ -67,15 +69,35 @@ const Home = () =>{
          setFutureForecast(flatData)
     }
 
+    const createDayFlatlist = (time:any,weather_code:any,temp:any,rain:any) => {
+
+        const times = time ?? [];
+        const weather_codes = weather_code ?? [];
+        const temps = temp ?? [];
+        const rains = rain ?? [];
+        const flatData = times.map((value:any, index:any) => ({
+            time: value,
+            weather_code: weather_codes[index],
+            temperature : temps[index],
+            rain_percentage : rains[index]
+          }));
+
+        setDaysForecast(flatData)
+    } 
 
     useEffect(()=> {    
 
         setIsLoading(true)
         if (Object.keys(coordinates).length !== 0){
             fetchWeather(coordinates.latitude, coordinates.longitude).then((data)=>{
-                setCurrentForecast(data.current)
-                createFlatlist(data.hourly.time.slice(0,24),data.hourly.precipitation_probability.slice(0,24))
-                setWeather(bgSelect(data.current.weather_code,data.current.is_day))
+                const current = data.current
+                const hourly = data.hourly
+                const daily = data.daily
+
+                setCurrentForecast(current)
+                createFutureFlatlist(hourly.time.slice(0,24),hourly.precipitation_probability.slice(0,24))
+                createDayFlatlist(daily.time,daily.weather_code,daily.temperature_2m_max,daily.rain_sum)
+                // setWeather(bgSelect(data.current.weather_code,data.current.is_day))
                 setIsLoading(false)
             })
         }
@@ -103,12 +125,18 @@ const Home = () =>{
                   <SearchComponent setCoordinates = {setCoordinates}/>
                   <WeatherComponent coordinates={coordinates} currentForecast={currentForecast}/>
                   <FutureForecastComponent future_data = {futureForcast}/>
+              
             </>
-      
             }
-          
+           
          </View>
          </LinearGradient>
+         <View style={{height:hp(30)}}>
+           
+
+            <DayForecast daysForecast={daysForecast}/>
+   
+        </View>
       </SafeAreaView>
 
     )

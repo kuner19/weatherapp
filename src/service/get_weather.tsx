@@ -12,7 +12,7 @@ const fetchWeather  = async (lat:number,long:number) => {
     const location:any = []
     let items : Location
         try {
-          const response = await axios.get(API_URL+`forecast?latitude=${lat}&longitude=${long}&current=temperature_2m,relative_humidity_2m,is_day,rain,weather_code,wind_speed_10m&hourly=precipitation_probability&precipitation_unit=inch`);
+          const response = await axios.get(API_URL+`forecast?latitude=${lat}&longitude=${long}&&current=temperature_2m,relative_humidity_2m,is_day,rain,weather_code,wind_speed_10m&hourly=precipitation_probability&precipitation_unit=inch&daily=weather_code,temperature_2m_max,rain_sum&precipitation_unit=inch`);
           if (response.data){
             return response.data
           }

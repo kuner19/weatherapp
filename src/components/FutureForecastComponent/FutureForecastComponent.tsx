@@ -1,4 +1,4 @@
-import { View,Text, FlatList, ScrollView } from "react-native"
+import { View,Text, FlatList, ScrollView, Image } from "react-native"
 import styles from "@/src/components/FutureForecastComponent/style";
 import { heightPercentageToDP as hp, widthPercentageToDP, widthPercentageToDP as wp } from "react-native-responsive-screen";
 import { Dimensions } from "react-native";
@@ -32,13 +32,15 @@ const FutureForecastComponent = ({future_data}:any)=> {
                 <View style={styles().row_container}>
                     <FlatList  horizontal = {true} showsHorizontalScrollIndicator={false} data={Object.values(rain_percentage)} renderItem={({item,index})=>(
                         <>
+                        
                         <View style={styles().rain_container}>
                         <Text style={styles(2).text}>{item.percentage}%</Text>
                         <View style={{width:hp(7),height:hp(7)}}>
-                        <LottieView source={images.droplet} 
+                         <LottieView source={images.droplet} 
                                 style={style().rain_lottie}
                                 autoPlay
-                                loop/>
+                                loop/> 
+                                
                         </View>
                         
                         <Text style={styles(2).text}>{item.time}</Text>

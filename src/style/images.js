@@ -3,6 +3,7 @@ import pin_white from '../../assets/icons/pin_white.png'
 import pin_black from '../../assets/icons/pin.png'
 import sunny from '../../assets/icons/sunny.png'
 import temp_white from '../../assets/icons/temp.png'
+import temp_black from '../../assets/icons/temp_black.png'
 import humid from '../../assets/icons/humidity.png'
 import wind from '../../assets/icons/wind.png'
 import night from '../../assets/icons/nighty.png'
@@ -17,6 +18,7 @@ import rainy_night from '../../assets/lottie/rainy_night.json'
 import rainy_sunny from '../../assets/lottie/rainy_sunny.json'
 import thunderstorm_lot from '../../assets/lottie/thunderstorm.json'
 import droplet from '../../assets/lottie/droplet.json'
+import rain_percent from '../../assets/icons/rain_percent.png'
 
 export default {
     magnify,
@@ -24,6 +26,7 @@ export default {
     pin_black,
     sunny,
     temp_white,
+    temp_black,
     humid,
     wind,
     night,
@@ -37,5 +40,6 @@ export default {
     rainy_sunny,
     rainy_night,
     snowy_lot,
-    droplet
+    droplet,
+    rain_percent
 };
