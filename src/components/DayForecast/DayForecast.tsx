@@ -34,7 +34,7 @@ const DayForecast = ({daysForecast}:any) => {
                     
                     <View style = {style(index).row_container}>
                         <LottieView source={imgSelect(getWeatherDescription(item.weather_code,1),1)?.src} 
-                                            style={{width: hp(5), height: hp(3)}}
+                                            style={{width: hp(5), height: hp(5)}}
                                             autoPlay
                                             loop/>
 

@@ -11,7 +11,7 @@ const styles = (index,font) => StyleSheet.create({
         flexDirection:'row',
         paddingVertical:5,
         paddingHorizontal:5,
-        backgroundColor: index === 0 ? 'rgba(223,223,223,1)' :'white',
+        backgroundColor: index === 0 ? 'rgba(245, 245, 245, 0.8)' :'white',
         alignItems:'center'
     },
     text:{
