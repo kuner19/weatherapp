@@ -19,6 +19,7 @@ import rainy_sunny from '../../assets/lottie/rainy_sunny.json'
 import thunderstorm_lot from '../../assets/lottie/thunderstorm.json'
 import droplet from '../../assets/lottie/droplet.json'
 import rain_percent from '../../assets/icons/rain_percent.png'
+import app_load from '../../assets/lottie/app_loading.json'
 
 export default {
     magnify,
@@ -41,5 +42,6 @@ export default {
     rainy_night,
     snowy_lot,
     droplet,
-    rain_percent
+    rain_percent,
+    app_load
 };

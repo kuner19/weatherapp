@@ -20,13 +20,14 @@ const FutureForecastComponent = ({future_data}:any)=> {
 
     return(
             <View style={styles().container}>
-                <Text style={styles(2).text}>Chances of rain</Text>
+                <Text style={styles(2).text}>  Chances of rain</Text>
                 {/* Black line */}
                 <View style={{
                     height: 1,
                     backgroundColor: 'rgba(0, 0, 0 ,0.1)',
                     alignSelf: 'stretch',
-                    marginTop:5
+                    marginTop:5,
+                    
                 }} />
 
                 <View style={styles().row_container}>

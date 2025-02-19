@@ -1,5 +1,5 @@
 import { FlatList, Image, Text, View } from "react-native"
-import { heightPercentageToDP as hp } from "react-native-responsive-screen"
+import { heightPercentageToDP as hp,widthPercentageToDP as wp} from "react-native-responsive-screen"
 import style from "@/src/components/DayForecast/style";
 import image from '@/src/style/images'
 import moment from "moment";
@@ -7,6 +7,7 @@ import getWeatherDescription from "@/src/style/weatherTable";
 import { imgSelect } from "@/src/vars/variable";
 import LottieView from "lottie-react-native";
 import images from "@/src/style/images";
+import { Skeleton } from "moti/skeleton";
 
 
 const DayForecast = ({daysForecast}:any) => {
@@ -17,13 +18,13 @@ const DayForecast = ({daysForecast}:any) => {
         temperature:number,
         rain_percentage:number
        }
-    
        const weatherImg = imgSelect('clear',1)
     const days_forecast:data[]= daysForecast
     return(
         
         <FlatList showsHorizontalScrollIndicator={false} data={Object.values(days_forecast)} renderItem={({item,index})=>(
             <View>
+            
                 <View style={style(index).row_container}>
 
                 <View style={{width:'50%'}}>
@@ -50,10 +51,9 @@ const DayForecast = ({daysForecast}:any) => {
                      <View style = {style(index).row_container}>
                         <Image source={images.rain_percent} style={{height:hp(4),width:hp(4)}}/>
                         <Text style = {style(2).text}>{item.rain_percentage.toFixed(1)}%</Text>
+                        
                     </View>
-                
-                
-                
+
                 </View>
 
                 </View>

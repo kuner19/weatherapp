@@ -1,6 +1,6 @@
 
 import { Stack } from "expo-router";
-import { SafeAreaView,View} from "react-native";
+import { SafeAreaView,Text,View} from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
 import SearchComponent from "@/src/components/SearchComponent/SearchComponent";
 import WeatherComponent from "@/src/components/WeatherComponent/WeatherComponent";
@@ -13,13 +13,18 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 import FutureForecastComponent from "@/src/components/FutureForecastComponent/FutureForecastComponent";
 import moment from 'moment'
 import DayForecast from "@/src/components/DayForecast/DayForecast";
+import { Skeleton } from 'moti/skeleton'
+import LottieView from "lottie-react-native";
+import images from "@/src/style/images";
+
 
 const Home = () =>{
     const [weather, setWeather] = useState<any>([])
     const [currentForecast, setCurrentForecast] = useState([])
     const [futureForcast, setFutureForecast] = useState([''])
     const [coordinates, setCoordinates] =useState<any>({})
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoaded, setIsLoaded] = useState(true)
+    const [secondLoading, setSecondLoading] = useState(false)
     const [daysForecast, setDaysForecast] = useState<any>([])
     // Load weather based on user device location
 
@@ -87,7 +92,7 @@ const Home = () =>{
 
     useEffect(()=> {    
 
-        setIsLoading(true)
+        setSecondLoading(true)
         if (Object.keys(coordinates).length !== 0){
             fetchWeather(coordinates.latitude, coordinates.longitude).then((data)=>{
                 const current = data.current
@@ -98,7 +103,8 @@ const Home = () =>{
                 createFutureFlatlist(hourly.time.slice(0,24),hourly.precipitation_probability.slice(0,24))
                 createDayFlatlist(daily.time,daily.weather_code,daily.temperature_2m_max,daily.rain_sum)
                 // setWeather(bgSelect(data.current.weather_code,data.current.is_day))
-                setIsLoading(false)
+                setIsLoaded(false)
+                setSecondLoading(false)
             })
         }
            
@@ -109,34 +115,52 @@ const Home = () =>{
 
     return  (
 
-        <SafeAreaView>
-         <Stack.Screen options={{headerTitle : "" , headerShown:false}}/>
+    <SafeAreaView> 
+        {isLoaded ?
+        <>
+             <Stack.Screen options={{headerTitle : "" , headerShown:false}}/>
+            <View style={{height:'100%',width:'100%',alignContent:'center', alignItems:'center',display:'flex', justifyContent:'center',backgroundColor:''}}>
+                 {/* <LottieView source={images.app_load} style={{width: hp(20), height: hp(20)}} autoPlay loop/> */}
+                 <ActivityIndicator size='large' color='#031716'/>
+            </View>
+        </>
+       
+        :
+        <>
+        
+        <Stack.Screen options={{headerTitle : "" , headerShown:false}}/>
          <LinearGradient
         // Button Linear Gradient
         colors={[weather?.bg1 || '#0057D9',weather?.bg2 || '#2C0781']}>
          <View className="p-[20] flex items-center" style={{height:hp(70)}}>
-            {isLoading ? 
+
+            {secondLoading ? 
             
             <View style={{height:'100%',width:'100%',alignContent:'center',display:'flex', justifyContent:'center'}}>
                  <ActivityIndicator size='large' color='#031716'/>
             </View>
             :
-            <>
+            <> 
                   <SearchComponent setCoordinates = {setCoordinates}/>
                   <WeatherComponent coordinates={coordinates} currentForecast={currentForecast}/>
                   <FutureForecastComponent future_data = {futureForcast}/>
               
-            </>
-            }
+             </>
+            } 
+       
            
          </View>
          </LinearGradient>
          <View style={{height:hp(30)}}>
-           
 
             <DayForecast daysForecast={daysForecast}/>
    
         </View>
+
+
+        </>
+        }
+         
       </SafeAreaView>
 
     )

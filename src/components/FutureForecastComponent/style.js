@@ -20,7 +20,7 @@ const { StyleSheet } = require("react-native");
         borderTopLeftRadius:rV(15),
         borderBottomRightRadius:rV(15),
         // borderRadius: rV(15),
-        padding:10,
+        paddingVertical:10,
     },
     rain_container :{
         height:height > 990 && height < 1240 ? hp(15) : hp(14),
